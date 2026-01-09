@@ -22,25 +22,25 @@
       copy:
         src: conf/extensions.conf
         dest: /etc/asterisk/extensions.conf
-        mode: '0644'
+        mode: '0640'
         
     - name: Копирование pjsip.conf
       copy:
         src: conf/pjsip.conf
         dest: /etc/asterisk/pjsip.conf
-        mode: '0644'
+        mode: '0640'
         
     - name: Копирование queues.conf
       copy:
         src: conf/queues.conf
         dest: /etc/asterisk/queues.conf
-        mode: '0644'
+        mode: '0640'
         
     - name: Копирование musiconhold.conf
       copy:
         src: conf/musiconhold.conf
         dest: /etc/asterisk/musiconhold.conf
-        mode: '0644'
+        mode: '0640'
         
     - name: Копирование moh.wav
       copy:
@@ -52,4 +52,4 @@
     - name: Перезагрузка Asterisk
       ansible.builtin.service:
         name: asterisk
-        state: reloaded
+        state: restarted
