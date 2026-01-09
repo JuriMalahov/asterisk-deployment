@@ -1,6 +1,8 @@
 ---
 - name: Развертывание Callcenter на базе Asterisk и Ubuntu 22
   hosts: localhost
+  connection: local
+  gather_facts: false
   become: yes
 
   tasks:
