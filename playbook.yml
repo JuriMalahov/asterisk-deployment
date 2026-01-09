@@ -48,7 +48,6 @@
         dest: /var/lib/asterisk/moh/moh.wav
         mode: '0644'
 
-  handlers:
     - name: Перезагрузка Asterisk
       ansible.builtin.service:
         name: asterisk
