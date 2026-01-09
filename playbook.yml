@@ -1,0 +1,53 @@
+---
+- name: Развертывание Callcenter на базе Asterisk и Ubuntu 22
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Установка Asterisk
+      ansible.builtin.apt:
+        name:
+          - asterisk
+        state: present
+
+    - name: Активация и запуск Asterisk
+      ansible.builtin.service:
+        name: asterisk
+        state: started
+        enabled: yes
+
+    - name: Копирование extensions.conf
+      copy:
+        src: extensions.conf
+        dest: /etc/asterisk/extensions.conf
+        mode: '0644'
+        
+    - name: Копирование pjsip.conf
+      copy:
+        src: pjsip.conf
+        dest: /etc/asterisk/pjsip.conf
+        mode: '0644'
+        
+    - name: Копирование queues.conf
+      copy:
+        src: queues.conf
+        dest: /etc/asterisk/queues.conf
+        mode: '0644'
+        
+    - name: Копирование musiconhold.conf
+      copy:
+        src: musiconhold.conf
+        dest: /etc/asterisk/musiconhold.conf
+        mode: '0644'
+        
+    - name: Копирование moh.wav
+      copy:
+        src: moh.wav
+        dest: /var/lib/asterisk/moh/moh.wav
+        mode: '0644'
+
+  handlers:
+    - name: Перезагрузка Asterisk
+      ansible.builtin.service:
+        name: asterisk
+        state: reloaded
